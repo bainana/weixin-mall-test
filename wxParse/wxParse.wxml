@@ -39,7 +39,7 @@
 <!--入口模版-->
 
 <template name="wxParse">
-  <block wx:for="{{wxParseData}}" wx:key="">
+  <block wx:for="{{wxParseData}}" wx:key="index">
     <template is="wxParse0" data="{{item}}" />
   </block>
 </template>
@@ -52,7 +52,7 @@
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
       <button type="default" size="mini">
-        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse1" data="{{item}}" />
         </block>
       </button>
@@ -65,7 +65,7 @@
             <view class="{{item.classStr}} wxParse-li-circle"></view>
           </view>
           <view class="{{item.classStr}} wxParse-li-text">
-            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
               <template is="wxParse1" data="{{item}}" />
             </block>
           </view>
@@ -93,7 +93,7 @@
     </block>
     <block wx:elif="{{item.tag == 'table'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse1" data="{{item}}" />
         </block>
       </view>
@@ -105,7 +105,7 @@
     <!--其他块级标签-->
     <block wx:elif="{{item.tagType == 'block'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse1" data="{{item}}" />
         </block>
       </view>
@@ -113,7 +113,7 @@
 
     <!--内联标签-->
     <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
         <template is="wxParse1" data="{{item}}" />
       </block>
     </view>
@@ -137,7 +137,7 @@
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
       <button type="default" size="mini">
-        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse2" data="{{item}}" />
         </block>
       </button>

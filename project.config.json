@@ -5,7 +5,8 @@
 	},
 	"setting": {
 		"urlCheck": false,
-		"es6": false,
+		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
@@ -82,6 +83,13 @@
 					"id": -1,
 					"name": "公告列表",
 					"pathName": "pages/notice/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "公告详情",
+					"pathName": "pages/notice/show",
 					"scene": null
 				}
 			]

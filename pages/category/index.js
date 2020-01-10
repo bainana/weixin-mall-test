@@ -1,6 +1,4 @@
-// pages/notice/show.js
-const WXAPI = require('apifm-wxapi');
-const WxParse = require('../../wxParse/wxParse.js');
+// pages/category/index.js
 Page({
 
   /**
@@ -14,15 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    WXAPI.noticeDetail(options.id).then((res)=> {
-      if (res.code == 0) {
-        this.setData({
-          notice: res.data
-        });
-        WxParse.wxParse('article', 'html', res.data.content, this, 5);
-      }
-    })
+
   },
 
   /**

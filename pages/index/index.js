@@ -18,6 +18,7 @@ Page({
   onLoad: function () {
     this.getBanner();//获取banner
     this.getNotice();//获取通告
+    this.getCategory();//获取商品分类
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -47,7 +48,7 @@ Page({
 
 
   },
-  getUserInfo: function(e) {
+  getUserInfo(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -67,7 +68,8 @@ Page({
     })
   },
 
-  getNotice: function () {
+/*** 获取公告 ***/
+  getNotice() {
     WXAPI.noticeList({ pageSize: 5 }).then((res) => {
       if (res.code == 0) {
         this.setData({
@@ -77,11 +79,41 @@ Page({
     })
   },
 
+/* banner跳转**/
   tapBanner: function(e){
     if(e.currentTarget.dataset.id !== 0){
       wx.navigateTo({
         url: '/pages/goods-detail/index?id=' + e.currentTarget.dataset.id
       })
     }
+  },
+
+  /**获取分类*/
+  async getCategory(){
+    const res = await WXAPI.goodsCategory()
+    let categories = [];
+    if (res.code == 0) {
+      const _categories = res.data.filter(ele => {
+        return ele.level == 1
+      })
+      categories = categories.concat(_categories)
+    }
+    this.setData({
+      categories: categories,
+      activeCategoryId: 0,
+      curPage: 1
+    });
+    this.getGoodsList(0);
+  },
+  getGoodsList(){
+
+  },
+
+  /* 点击分类**/
+  tapClick(e){
+    console.log(e.currentTarget.id)
+    wx.switchTab({
+      url: '/pages/goods/index?id=' + e.currentTarget.id
+    })
   }
 })

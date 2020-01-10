@@ -1,0 +1,15 @@
+<!--pages/register/index.wxml-->
+<form bindsubmit="register" bindreset="formReset">
+  <view class="section">
+    <view class="section-title">用户名</view>
+    <input name="input" name="username" placeholder="please input here" />
+  </view>
+  <view class="section">
+    <view class="section-title">密码</view>
+    <input name="input" name="pwd" placeholder="please input here" />
+  </view>
+  <view class="section">
+    <button type="primary" size="" plain="plain" formType="submit">注册</button>
+     <button type="primary" size="" plain="plain" formType="reset">重置</button>
+  </view>
+</form>

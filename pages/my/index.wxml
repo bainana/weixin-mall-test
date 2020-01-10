@@ -1,0 +1,3 @@
+<!--pages/my/index.wxml-->
+<button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="plain" bindtap="register">注册</button>
+<button bindtap="login">登录</button>

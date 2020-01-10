@@ -1,0 +1,37 @@
+<!--index.wxml-->
+<view class="wrap">
+  <!-- <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view> -->
+<view class="swiper-container">
+  <swiper indicator-dots="true" indicator-active-color="#fff" autoplay circular>
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <image  mode="aspectFill" bindtap="tapBanner" data-id="{{item.id}}" src="{{item.picUrl}}" />
+    </swiper-item>
+  </swiper>
+  <view class="search">
+    <input type="text" placeholder="输入搜索关键词" value="{{name}}" bindinput="bindinput" bindconfirm="bindconfirm"></input>
+    <image src="/images/icon/search.svg"></image>
+  </view>
+</view>
+<view class="notice-box" wx:if="{{noticeList}}">
+  <view class="notice">
+    <image class="notice_icon" src="/images/notice.png"></image>
+    <swiper class="notice_swiper" vertical autoplay circular>
+      <navigator wx:for-items="{{noticeList.dataList}}" wx:key="id" url="/pages/notice/show?id={{item.id}}">
+        <swiper-item>
+          <view class="notice_itemr">{{item.title}}</view>
+        </swiper-item>
+      </navigator>
+    </swiper>
+  </view>
+  <view class="more"><navigator url="/pages/notice/index">更多 ></navigator></view>
+</view>
+</view>

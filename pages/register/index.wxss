@@ -1,0 +1,15 @@
+/* pages/register/index.wxss */
+.section{
+  display: flex;
+  margin: 20rpx 0;
+}
+.section .section-title{
+  width: 200rpx;
+  text-align: right;
+  padding-right: 30rpx;
+}
+.section input{
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 4px;
+}

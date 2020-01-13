@@ -27,8 +27,8 @@
         "pagePath": "pages/index/index"
       },
       {
-        "text": "拼团",
-        "pagePath": "pages/goods/index"
+        "text": "分类",
+        "pagePath": "pages/category/index"
       },
       {
         "text": "购物车",

@@ -1,18 +1,33 @@
 // pages/goods-detail/index.js
+const SelectSizePrefix = '选择：'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    wxlogin: true,
+    goodsDetail: {},
+    hasMoreSelect: false,
+    selectSize: SelectSizePrefix,
+    selectSizePrice: 0,
+    totalScoreToPay: 0,
+    shopNum: 0,
+    hideShopPopup: true,
+    buyNumber: 0,
+    buyNumMin: 1,
+    buyNumMax: 0,
 
+    propertyChildIds: "",
+    prpertyChildNames: "",
+    shopType: "addShopCar"
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    console.log('detail',options)
   },
 
   /**

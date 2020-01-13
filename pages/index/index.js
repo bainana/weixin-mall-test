@@ -1,7 +1,9 @@
 //index.js
+const WXAPI = require('apifm-wxapi');
+const CONFIG = require('../../config.js');
+const TOOLS = require('../../utils/tool.js')
 //获取应用实例
 const app = getApp()
-const WXAPI = require('apifm-wxapi');
 Page({
   data: {
     motto: 'Hello World',
@@ -48,6 +50,12 @@ Page({
 
 
   },
+onShow: function(){
+  console.log('onshow');
+  // 获取购物车数据，显示TabBarBadge
+  TOOLS.showTabBarBadge();
+},
+
   getUserInfo(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo

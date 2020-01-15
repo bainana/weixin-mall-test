@@ -1,20 +1,50 @@
 // pages/goods/index.js
+const WXAPI = require('apifm-wxapi')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    listType: 1, // 1为1个商品一行，2为2个商品一行    
+    name: '', // 搜索关键词
+    orderBy: '', // 排序规则
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('11' + options)
+    this.setData({
+      name: options.name,
+      categoryId: options.categoryId
+    })
+    this.search()
   },
-
+  async search() {
+    // 搜索商品
+    wx.showLoading({
+      title: '加载中',
+    })
+    const _data = {
+      orderBy: this.data.orderBy,
+      page: 1,
+      pageSize: 500,
+    }
+    if (this.data.name) {
+      _data.nameLike = this.data.name
+    }
+    if (this.data.categoryId) {
+      _data.categoryId = this.data.categoryId
+    }
+    const res = await WXAPI.goods(_data)
+    wx.hideLoading()
+    if (res.code == 0) {
+      this.setData({
+        goods: res.data,
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -63,5 +93,21 @@ Page({
   onShareAppMessage: function () {
 
   },
-
+  bindinput(e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
+  bindconfirm(e) {
+    this.setData({
+      name: e.detail.value
+    })
+    this.search()
+  },
+  filter(e) {
+    this.setData({
+      orderBy: e.currentTarget.dataset.val
+    })
+    this.search()
+  },
 })

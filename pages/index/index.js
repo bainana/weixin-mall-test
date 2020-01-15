@@ -113,14 +113,47 @@ onShow: function(){
     });
     this.getGoodsList(0);
   },
-  getGoodsList(){
-
+  async getGoodsList(categoryId, append) {
+    if (categoryId == 0) {
+      categoryId = "";
+    }
+    wx.showLoading({
+      "mask": true
+    })
+    const res = await WXAPI.goods({
+      categoryId: categoryId,
+      nameLike: this.data.inputVal,
+      page: this.data.curPage,
+      pageSize: this.data.pageSize
+    })
+    wx.hideLoading()
+    if (res.code == 404 || res.code == 700) {
+      let newData = {
+        loadingMoreHidden: false
+      }
+      if (!append) {
+        newData.goods = []
+      }
+      this.setData(newData);
+      return
+    }
+    let goods = [];
+    if (append) {
+      goods = this.data.goods
+    }
+    for (var i = 0; i < res.data.length; i++) {
+      goods.push(res.data[i]);
+    }
+    this.setData({
+      loadingMoreHidden: true,
+      goods: goods,
+    });
   },
 
   /* 点击分类**/
   tapClick(e){
     console.log(e.currentTarget.id)
-    wx.switchTab({
+    wx.navigateTo({
       url: '/pages/goods/index?id=' + e.currentTarget.id
     })
   }

@@ -138,7 +138,7 @@ Page({
   cancelLogin: function(){
     console.log('cancel')
     this.setData({
-      wxlogin: false
+      wxlogin: true
     })
   },
   processLogin(e){

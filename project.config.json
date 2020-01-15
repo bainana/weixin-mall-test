@@ -97,6 +97,13 @@
 					"id": -1,
 					"name": "分类",
 					"pathName": "pages/category/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商品详情",
+					"pathName": "pages/goods-detail/index",
 					"scene": null
 				}
 			]
